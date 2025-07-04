@@ -29,20 +29,18 @@ class Fraccion(
         println(this.toString())
     }
 
-    private fun simplificar(){
-        val mcd = calcularMCD(kotlin.math.abs(numerador), kotlin.math.abs(denominador))
-        numerador /= mcd
-        denominador /= mcd
-
-        // Asegurarse de que el denominador siempre sea positivo
-        if (denominador < 0) {
-            numerador = -numerador
-            denominador = -denominador
-    }
-
-        private fun calcularMCD(a: Int, b: Int): Int {
-            return if (b == 0) a else calcularMCD(b, a % b)
+    private fun _simplificar(numerador: Int, denominador: Int): Fraccion{ //Devuelve el MCD
+        var numSim = numerador
+        var denSim = denominador
+        while (denSim != 0) {
+            val temp = denSim
+            denSim = numSim % denSim
+            numSim = temp
         }
+        val resultN: Int = (numerador / numSim)
+        val resultD: Int = (denominador / numSim)
+        return Fraccion((numerador / numSim), (denominador / numSim))
+    }
 
     //Le enseña a la clase como hacer la SUMA de fracciónes
     operator fun plus(otra: Fraccion): Fraccion { //plus es una palabra reservada
@@ -50,8 +48,7 @@ class Fraccion(
         val sumaNumerador = (this.numerador * otra.denominador) + (otra.numerador * this.denominador)
         val sumaDenominador = this.denominador * otra.denominador
 
-        val resultado = Fraccion(sumaNumerador, sumaDenominador)
-        return resultado
+        return _simplificar(sumaNumerador, sumaDenominador)
     }
 
     //Le enseña a la clase como hacer la RESTA de fracciónes
@@ -60,7 +57,6 @@ class Fraccion(
         val restaNumerador = (this.numerador * otra.denominador) - (otra.numerador * this.denominador)
         val restaDenominador = this.denominador * otra.denominador
 
-        val resultado = Fraccion(restaNumerador, restaDenominador)
-        return resultado
+        return _simplificar(restaNumerador, restaDenominador)
     }
 }
