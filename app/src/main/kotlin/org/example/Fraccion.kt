@@ -59,4 +59,24 @@ class Fraccion(
 
         return _simplificar(restaNumerador, restaDenominador)
     }
+
+    //Le enseña a la clase como hacer la MULTIPLICACIÓN de fracciónes
+    operator fun times(otra: Fraccion): Fraccion { //times es una palabra reservada
+        val multiNumerador = this.numerador * otra.numerador
+        val multiDenominador = this.denominador * otra.denominador
+
+        return _simplificar(multiNumerador, multiDenominador)
+    }
+
+    //Le enseña a la clase como hacer la DIVISIÓN de fracciónes
+    operator fun div(otra: Fraccion): Fraccion{ //div es una palabra reservada
+        if (otra.numerador == 0){
+            throw IllegalArgumentException("El numerador de la segunda fracción no puede ser cero")
+        }
+
+        val diviNumerador = this.numerador * otra.denominador
+        val diviDenominador = this.denominador * otra.numerador
+
+        return _simplificar(diviNumerador, diviDenominador)
+    }
 }
