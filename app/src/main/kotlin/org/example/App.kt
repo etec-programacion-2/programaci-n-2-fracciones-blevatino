@@ -1,13 +1,15 @@
 
 package org.example
 
+import java.util.Scanner
+
 fun main() {
     //Parte 1
-    val f1 = Fraccion(-5, 3)
+    val f1 = Fraccion(5, 1)
     f1.mostrar()
 
     //Parte 2
-    val f2 = Fraccion(-4,6)
+    val f2 = Fraccion(10,2)
     println("La suma es: ${f1 + f2}")
     println("La resta es: ${f1 - f2}")
 
@@ -23,6 +25,7 @@ fun main() {
     println("f1 es en decimal: ${f1.aDecimal()}")
     val d1 = 1.75
     println("f1 en fracción es: ${Fraccion.desdeDecimal(d1)}")
+
 
 }
 

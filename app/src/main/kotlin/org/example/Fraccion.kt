@@ -86,7 +86,7 @@ class Fraccion(
 
     // Le enseña a la clase como hacer la COMPARACIÓN de fracciónes
     operator fun compareTo(otra: Fraccion): Int { //compareTo es una palabra reservada
-        val comparaFraccion = (this.numerador/this.denominador).compareTo(otra.numerador/otra.denominador)
+        val comparaFraccion = ((this.numerador * otra.denominador). toDouble()).compareTo((otra.numerador * this.denominador).toDouble())
         return (comparaFraccion)
     }
 
@@ -100,18 +100,18 @@ class Fraccion(
             return false
         }
 
-        return this.numerador / this.denominador == other.numerador / other.denominador
+        return this.numerador * other.denominador == other.numerador * this.denominador
     }
 
     fun esMayor(otra: Fraccion): Boolean { // Retorna true si es mayor
-        if (this > otra){
+        if (this.numerador * otra.denominador > otra.numerador * this.denominador){
             return true
         }
         return false
     }
 
     fun esMenor(otra: Fraccion): Boolean { // Retorna true si es menor
-        if (this < otra){
+        if (this.numerador * otra.denominador < otra.numerador * this.denominador){
             return true
         }
         return false
